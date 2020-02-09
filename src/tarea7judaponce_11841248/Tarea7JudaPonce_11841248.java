@@ -218,6 +218,58 @@ public class Tarea7JudaPonce_11841248 {
                                     break;
 
                                 case 3:// fisker
+                                    System.out.println(" Ingrese velocidad maxima");
+                                    vmax = leer.nextInt();
+                                    System.out.println(" Ingrese velocidad galones");
+                                    vgalon = leer.nextInt();
+                                    System.out.println(" Ingrese precio");
+                                    precio = leer.nextInt();
+                                    System.out.println(" Seleccione si es cabina unica o doble ");
+                                    System.out.println(" 1. Si");
+                                    System.out.println(" 2. No");
+                                    pol = leer.nextInt();
+                                    String cabi = "";
+                                    switch (pol) {
+                                        case 1:
+                                            cab = "Si";
+                                            break;
+
+                                        case 2:
+                                            polarizado = "No";
+                                            break;
+                                        default:
+                                            System.out.println(" Opcion Incorrecta");
+                                            System.out.println();
+                                    }
+                                    System.out.println(" Seleccione si es camioneta: ");
+                                    System.out.println(" 1. Si");
+                                    System.out.println(" 2. No");
+                                    pol = leer.nextInt();
+                                    String converr = "";
+                                    switch (pol) {
+                                        case 1:
+                                            conver = "Si";
+                                            break;
+
+                                        case 2:
+                                            conver = "No";
+                                            break;
+                                        default:
+                                            System.out.println(" Opcion Incorrecta");
+                                            System.out.println();
+                                    }
+
+                                    System.out.println(" Carro marca: •Fisker, ingresado con exito ");
+                                 carritos.add(new Fisker(cabi, converr, fechha, color, marca, polarizado, vmax, vgalon, precio));
+
+                                     salidass = "";
+                                    for (Object o : carritos) {
+                                        if (o instanceof Fisker) {
+                                            salidass += " [" + carritos.indexOf(o) + "] " + o + "\n";
+                                        }
+
+                                    }
+                                    System.out.println(salidass);
 
                                     break;
 
