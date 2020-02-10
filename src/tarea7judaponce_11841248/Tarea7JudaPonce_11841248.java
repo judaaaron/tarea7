@@ -15,19 +15,24 @@ public class Tarea7JudaPonce_11841248 {
     public static void main(String[] args) throws ParseException {
         String nombre;
         int id, edad, altura, peso, horas, dinero;
-        
+
+        carritos.add(new MayBach(null, "Verde", "Firestone", "Si", 160, 155, 400000));
+        personal.add(new empleados(8, null, "Julio", 835, 22, 170, 150));
+        personal.add(new cliente(1000000, null, "Paula", 195, 28, 150, 127));
+
         char resp = 's';
         while (resp == 's' || resp == 'S') {
             System.out.println(" 1. Carros");
             System.out.println(" 2. Administracion");
             System.out.println(" 3. Eliminar");
-            System.out.println(" 3. Salir");
+            System.out.println(" 4. Simulacion");
+            System.out.println(" 5. Salir");
             int opcion = leer.nextInt();
             switch (opcion) {
                 case 1:// carros
                     System.out.println(" 1. Crear carro");
                     System.out.println(" 2. Modificar atributos de carro");
-                    System.out.println(" 3. Eliminar carro");
+                    System.out.print(" Elija la opcion que desea: ");
                     int cars = leer.nextInt();
                     switch (cars) {
                         case 1:// crar carro
@@ -288,7 +293,7 @@ public class Tarea7JudaPonce_11841248 {
                             break;
 
                         case 2:// modificar carro
-                            
+
                         case 3: // eliminar carro
 
                             break;
@@ -303,55 +308,55 @@ public class Tarea7JudaPonce_11841248 {
                     System.out.println("2) Crear cliente");
                     System.out.print("Ingrese la opcion que desea: ");
                     int per = leer.nextInt();
-                    
+
                     System.out.print("Ingrese el nombre: ");
                     nombre = leer.next();
-                    
+
                     System.out.print("Ingrese el ID: ");
                     id = leer.nextInt();
-                    
+
                     System.out.print("Ingrese la edad: ");
                     edad = leer.nextInt();
-                    while(edad<18){
+                    while (edad < 18) {
                         System.out.println("Debe de ser mayor de 17 años. Ingrese la edad: ");
                         edad = leer.nextInt();
                     }
-                    
+
                     System.out.print("Ingrese la altura en cm: ");
                     altura = leer.nextInt();
-                    while(altura<155){
+                    while (altura < 155) {
                         System.out.println("Debe ser mayor a 154. Ingrese la altura en cm: ");
                         altura = leer.nextInt();
                     }
-                    
+
                     System.out.print("Ingrese el peso: ");
                     peso = leer.nextInt();
-                    while(peso<120){
+                    while (peso < 120) {
                         System.out.println("El peso debe ser mayor a 119. Ingrese el peso: ");
                         peso = leer.nextInt();
                     }
-                    
+
                     switch (per) {
                         case 1:
                             System.out.print("Ingrese el numero de horas que trabaja: ");
                             horas = leer.nextInt();
-                            
+
                             personal.add(new empleados(horas, null, nombre, id, edad, altura, peso));
                             break;
                         case 2:
                             System.out.print("Ingrese el dinero que lleva consigo: ");
                             dinero = leer.nextInt();
-                            
+
                             personal.add(new cliente(dinero, null, nombre, id, edad, altura, peso));
                             break;
                         default:
                             System.out.println("Opcion incorrecta");
                             break;
                     }
-                    
+
                     for (int i = 0; i < personal.size(); i++) {
-                        int f = i+1;
-                        System.out.println(f+") "+personal.get(i));
+                        int f = i + 1;
+                        System.out.println(f + ") " + personal.get(i));
                     }
                     break;
                 case 3://eliminar
@@ -359,28 +364,49 @@ public class Tarea7JudaPonce_11841248 {
                     System.out.println("2) Personal");
                     System.out.print("Ingrese la opcion que desea: ");
                     int eliminar = leer.nextInt();
-                    
+
                     switch (eliminar) {
                         case 1:
-                            for (int i = 0; i < carritos.size(); i++) {
-                                int n = i+1;
-                                System.out.println(n+") "+carritos.get(i));
+                            if (carritos.size() == 0) {
+                                System.out.println("No hay carros");
+                                break;
                             }
-                            
+                            for (int i = 0; i < carritos.size(); i++) {
+                                int n = i + 1;
+                                System.out.println(n + ") " + carritos.get(i));
+                            }
+
                             System.out.print("Elija la opcion que desea: ");
                             int n = leer.nextInt();
-                            
+                            n--;
+                            while (n > carritos.size() - 1) {
+                                System.out.println("No existe esa posicion");
+                                System.out.print("Elija la opcion que desea: ");
+                                n = leer.nextInt();
+                                n--;
+                            }
                             carritos.remove(n);
                             break;
                         case 2:
-                            for (int i = 0; i < personal.size(); i++) {
-                                n = i+1;
-                                System.out.println(n+") "+personal.get(i));
+                            if (personal.size() == 0) {
+                                System.out.println("No hay personal");
+                                break;
                             }
-                            
+                            for (int i = 0; i < personal.size(); i++) {
+                                n = i + 1;
+                                System.out.println(n + ") " + personal.get(i));
+                            }
+
                             System.out.print("Elija la opcion que desea: ");
                             n = leer.nextInt();
-                            
+                            n--;
+                            while (n > personal.size() - 1) {
+                                System.out.println("No existe esa posicion");
+                                System.out.print("Elija la opcion que desea: ");
+                                n = leer.nextInt();
+                                n--;
+                            }
+
                             personal.remove(n);
                             break;
                         default:
@@ -388,7 +414,23 @@ public class Tarea7JudaPonce_11841248 {
                             break;
                     }
                     break;
-                case 4:// salir
+                case 4:
+                    simular();
+
+                    System.out.println("Carros");
+                    for (int i = 0; i < carritos.size(); i++) {
+                        int n = i + 1;
+                        System.out.println(n + ") " + carritos.get(i));
+                    }
+
+                    System.out.println("");
+                    System.out.println("Personal");
+                    for (int i = 0; i < personal.size(); i++) {
+                        int n = i + 1;
+                        System.out.println(n + ") " + personal.get(i));
+                    }
+                    break;
+                case 5:// salir
                     System.exit(3);
 
                     break;
@@ -398,6 +440,58 @@ public class Tarea7JudaPonce_11841248 {
 
         }
 
+    }
+
+    public static void simular() {
+        int con = 0;
+        for (int i = 0; i < personal.size(); i++) {
+            if (personal.get(i) instanceof cliente) {
+                con++;
+            }
+        }
+        for (int l = 0; l < con; l++) {
+
+            System.out.println("Carros");
+            for (int i = 0; i < carritos.size(); i++) {
+                int n = i + 1;
+                System.out.println(n + ") " + carritos.get(i));
+            }
+
+            System.out.println("");
+            int n;
+            for (int i = 0; i < personal.size(); i++) {
+                n = 1 + i;
+                if (personal.get(i) instanceof cliente) {
+                    System.out.println(n + ") " + personal.get(i));
+                }
+            }
+            System.out.print("Elija al cliente: ");
+            int clien = leer.nextInt();
+            clien--;
+
+            for (int i = 0; i < personal.size(); i++) {
+                if (personal.get(i) instanceof empleados) {
+                    if (personal.get(i).getClass() == null) {
+                        ((empleados) personal.get(i)).setCliente(((cliente) personal.get(clien)));
+                        System.out.println("El cliente " + personal.get(clien).getNombre() + " lo atenderá " + personal.get(i));
+
+                        System.out.println("Carros");
+                        for (int r = 0; r < carritos.size(); r++) {
+                            int o = r + 1;
+                            System.out.println(o + ") " + carritos.get(o));
+                        }
+                        
+                        System.out.print("Elija el carro a comprar: ");
+                        int carro = leer.nextInt();
+                        carro--;
+                        
+                        
+                    }
+                }
+            }
+
+            System.out.println("");
+        }
     }
 
 }

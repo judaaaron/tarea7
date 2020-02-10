@@ -83,7 +83,11 @@ public class empleados extends persona{
 
     @Override
     public String toString() {
-        return super.toString()+" Empleados: " + " Horas: " + horas + ", Cliente: " + cliente + '.';
+        if(cliente==null){
+            return super.toString()+" Empleados: " + " Horas: " + horas + ", Cliente: " + "Disponible" + '.';
+        } else{
+            return super.toString()+" Empleados: " + " Horas: " + horas + ", Cliente: " + cliente + '.';
+        }
     }
     
     
