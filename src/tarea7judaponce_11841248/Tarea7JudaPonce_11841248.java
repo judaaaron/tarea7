@@ -10,12 +10,17 @@ public class Tarea7JudaPonce_11841248 {
 
     static Scanner leer = new Scanner(System.in);
     static ArrayList<Carros> carritos = new ArrayList();
+    static ArrayList<persona> personal = new ArrayList();
 
     public static void main(String[] args) throws ParseException {
+        String nombre;
+        int id, edad, altura, peso, horas, dinero;
+        
         char resp = 's';
         while (resp == 's' || resp == 'S') {
             System.out.println(" 1. Carros");
             System.out.println(" 2. Administracion");
+            System.out.println(" 3. Eliminar");
             System.out.println(" 3. Salir");
             int opcion = leer.nextInt();
             switch (opcion) {
@@ -207,7 +212,7 @@ public class Tarea7JudaPonce_11841248 {
                                     System.out.println(" Carro marca: •Morgan Aero 8, ingresado con exito ");
                                     carritos.add(new MorganAero8(cab, conver, fechha, color, marca, polarizado, vmax, vgalon, precio));
 
-                                     salidass = "";
+                                    salidass = "";
                                     for (Object o : carritos) {
                                         if (o instanceof MorganAero8) {
                                             salidass += " [" + carritos.indexOf(o) + "] " + o + "\n";
@@ -260,9 +265,9 @@ public class Tarea7JudaPonce_11841248 {
                                     }
 
                                     System.out.println(" Carro marca: •Fisker, ingresado con exito ");
-                                 carritos.add(new Fisker(cabi, converr, fechha, color, marca, polarizado, vmax, vgalon, precio));
+                                    carritos.add(new Fisker(cabi, converr, fechha, color, marca, polarizado, vmax, vgalon, precio));
 
-                                     salidass = "";
+                                    salidass = "";
                                     for (Object o : carritos) {
                                         if (o instanceof Fisker) {
                                             salidass += " [" + carritos.indexOf(o) + "] " + o + "\n";
@@ -283,9 +288,7 @@ public class Tarea7JudaPonce_11841248 {
                             break;
 
                         case 2:// modificar carro
-
-                            break;
-
+                            
                         case 3: // eliminar carro
 
                             break;
@@ -296,10 +299,96 @@ public class Tarea7JudaPonce_11841248 {
                     break;
 
                 case 2:// administracion
-
+                    System.out.println("1) Crear empleado");
+                    System.out.println("2) Crear cliente");
+                    System.out.print("Ingrese la opcion que desea: ");
+                    int per = leer.nextInt();
+                    
+                    System.out.print("Ingrese el nombre: ");
+                    nombre = leer.next();
+                    
+                    System.out.print("Ingrese el ID: ");
+                    id = leer.nextInt();
+                    
+                    System.out.print("Ingrese la edad: ");
+                    edad = leer.nextInt();
+                    while(edad<18){
+                        System.out.println("Debe de ser mayor de 17 años. Ingrese la edad: ");
+                        edad = leer.nextInt();
+                    }
+                    
+                    System.out.print("Ingrese la altura en cm: ");
+                    altura = leer.nextInt();
+                    while(altura<155){
+                        System.out.println("Debe ser mayor a 154. Ingrese la altura en cm: ");
+                        altura = leer.nextInt();
+                    }
+                    
+                    System.out.print("Ingrese el peso: ");
+                    peso = leer.nextInt();
+                    while(peso<120){
+                        System.out.println("El peso debe ser mayor a 119. Ingrese el peso: ");
+                        peso = leer.nextInt();
+                    }
+                    
+                    switch (per) {
+                        case 1:
+                            System.out.print("Ingrese el numero de horas que trabaja: ");
+                            horas = leer.nextInt();
+                            
+                            personal.add(new empleados(horas, null, nombre, id, edad, altura, peso));
+                            break;
+                        case 2:
+                            System.out.print("Ingrese el dinero que lleva consigo: ");
+                            dinero = leer.nextInt();
+                            
+                            personal.add(new cliente(dinero, null, nombre, id, edad, altura, peso));
+                            break;
+                        default:
+                            System.out.println("Opcion incorrecta");
+                            break;
+                    }
+                    
+                    for (int i = 0; i < personal.size(); i++) {
+                        int f = i+1;
+                        System.out.println(f+") "+personal.get(i));
+                    }
                     break;
-
-                case 3:// salir
+                case 3://eliminar
+                    System.out.println("1) Carros");
+                    System.out.println("2) Personal");
+                    System.out.print("Ingrese la opcion que desea: ");
+                    int eliminar = leer.nextInt();
+                    
+                    switch (eliminar) {
+                        case 1:
+                            for (int i = 0; i < carritos.size(); i++) {
+                                int n = i+1;
+                                System.out.println(n+") "+carritos.get(i));
+                            }
+                            
+                            System.out.print("Elija la opcion que desea: ");
+                            int n = leer.nextInt();
+                            
+                            carritos.remove(n);
+                            break;
+                        case 2:
+                            for (int i = 0; i < personal.size(); i++) {
+                                n = i+1;
+                                System.out.println(n+") "+personal.get(i));
+                            }
+                            
+                            System.out.print("Elija la opcion que desea: ");
+                            n = leer.nextInt();
+                            
+                            personal.remove(n);
+                            break;
+                        default:
+                            System.out.println("Opcion incorrecta");
+                            break;
+                    }
+                    break;
+                case 4:// salir
                     System.exit(3);
 
                     break;
