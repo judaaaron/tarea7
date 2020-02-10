@@ -10,6 +10,7 @@ public class Tarea7JudaPonce_11841248 {
 
     static Scanner leer = new Scanner(System.in);
     static ArrayList<Carros> carritos = new ArrayList();
+    static ArrayList<Carros> listacarro = new ArrayList();
     static ArrayList<persona> personal = new ArrayList();
 
     public static void main(String[] args) throws ParseException {
@@ -18,7 +19,7 @@ public class Tarea7JudaPonce_11841248 {
 
         carritos.add(new MayBach(null, "Verde", "Firestone", "Si", 160, 155, 400000));
         personal.add(new empleados(8, null, "Julio", 835, 22, 170, 150));
-        personal.add(new cliente(1000000, null, "Paula", 195, 28, 150, 127));
+        personal.add(new cliente(1000000, listacarro, "Paula", 195, 28, 150, 127));
 
         char resp = 's';
         while (resp == 's' || resp == 'S') {
@@ -293,12 +294,155 @@ public class Tarea7JudaPonce_11841248 {
                             break;
 
                         case 2:// modificar carro
+                            for (int i = 0; i < carritos.size(); i++) {
+                                int n=i+1;
+                                System.out.println(n+") "+carritos.get(i));
+                            }
+                            
+                            System.out.print("Ingrese el indice del carro que desea modificar: ");
+                            int indice = leer.nextInt();                            
+                            
+                            
+                            System.out.println("1) Fecha");
+                            System.out.println("2) Color");
+                            System.out.println("3) Marca");
+                            System.out.println("4) Polarizado");
+                            System.out.println("5) Velocidad maxima");
+                            System.out.println("6) Recorrido ");
+                            System.out.println("7) Precio ");
+                            System.out.print("Ingrese la opcion que desea: ");
+                            int op = leer.nextInt();
+                            switch (op) {
+                                case 1://modificar fecha
+                                    System.out.print(" Ingrese fecha de esmamblado(dd/MM/yyyy): ");
+                                    fecha = leer.next();
+                                    acumDia = "";
+                                    acumMes = "";
+                                    acumAnio = "";
+                                    acumDay = "";
+                                    acumMonth = "";
+                                    acumYear = "";
+                                    aux = "dd/MM/yyyy";
+                                    acum = "";
+                                    value = false;
+                                    tiempo = new SimpleDateFormat(aux);
 
-                        case 3: // eliminar carro
+                                    while (fecha.length() != 10) {
+                                        System.out.println(" debe tener solo 10 caracteres");
+                                        System.out.print(" Ingrese fecha de vencimiento(dd/MM/yyyy): ");
+                                        fecha = leer.next();
+                                    }
+                                    while (fecha.charAt(2) != '/' || fecha.charAt(5) != '/') {
+                                        System.out.println(" Entrada incorrecta");
+                                        System.out.print(" Ingrese fecha de vencimiento(dd/MM/yyyy): ");
+                                        fecha = leer.next();
+                                    }
 
+                                    dia = fecha.split("/");
+                                    acumDia = dia[0];
+                                    acumMes = dia[1];
+                                    acumAnio = dia[2];
+                                    diaa = Integer.parseInt(acumDia);
+                                    mess = Integer.parseInt(acumMes);
+                                    anioo = Integer.parseInt(acumAnio);
+                                    while (diaa <= 0 || diaa > 31 || mess <= 0 || mess > 12 || anioo <= 0) {
+                                        System.out.println(" dia o mes incorrectos");
+                                        System.out.print(" Ingrese fecha de vencimiento(dd/MM/yyyy): ");
+                                        fecha = leer.next();
+                                        dia = fecha.split("/");
+                                        acumDia = dia[0];
+                                        acumMes = dia[1];
+                                        acumAnio = dia[2];
+                                        diaa = Integer.parseInt(acumDia);
+                                        mess = Integer.parseInt(acumMes);
+                                        anioo = Integer.parseInt(acumAnio);
+
+                                    }
+                                    fechha = tiempo.parse(fecha);
+                                    v = new Date();
+                                    while ((fechha.getYear() > v.getYear())) {
+                                        System.out.println(" No se permiten fechas futuras a la fecha actual");
+                                        System.out.print(" Ingrese una nueva fecha de ensamblaje(dd/MM/yyyy): ");
+                                        fecha = leer.next();
+                                        value = false;
+
+                                        while (fecha.length() != 10) {
+                                            System.out.println(" debe tener solo 10 caracteres");
+                                            System.out.print(" Ingrese fecha de ensamblaje(dd/MM/yyyy): ");
+                                            fecha = leer.next();
+                                        }
+                                        while (fecha.charAt(2) != '/' || fecha.charAt(5) != '/') {
+                                            System.out.println(" Entrada incorrecta");
+                                            System.out.print(" Ingrese fecha de ensamblaje(dd/MM/yyyy): ");
+                                            fecha = leer.next();
+                                        }
+
+                                        dia = fecha.split("/");
+                                        acumDia = dia[0];
+                                        acumMes = dia[1];
+                                        acumAnio = dia[2];
+                                        diaa = Integer.parseInt(acumDia);
+                                        mess = Integer.parseInt(acumMes);
+                                        anioo = Integer.parseInt(acumAnio);
+                                        while (diaa <= 0 || diaa > 31 || mess <= 0 || mess > 12 || anioo <= 0) {
+                                            System.out.println(" dia o mes incorrectos");
+                                            System.out.print(" Ingrese fecha de ensamblaje(dd/MM/yyyy): ");
+                                            fecha = leer.next();
+                                            dia = fecha.split("/");
+                                            acumDia = dia[0];
+                                            acumMes = dia[1];
+                                            acumAnio = dia[2];
+                                            diaa = Integer.parseInt(acumDia);
+                                            mess = Integer.parseInt(acumMes);
+                                            anioo = Integer.parseInt(acumAnio);
+
+                                        }
+                                        fechha = tiempo.parse(fecha);
+
+                                    }
+                                    carritos.get(indice).setFecha(fechha);
+                                    break;
+                                case 2://modificar color
+                                    System.out.print(" Ingrese color del carro: ");
+                                    color = leer.next();
+                                    carritos.get(indice).setColor(color);
+                                    break;
+                                case 3://modificar marca de llanta
+                                    System.out.print(" Ingrese marca de llantas: ");
+                                    marca = leer.next();
+                                    carritos.get(indice).setMarca(marca);
+
+                                    break;
+                                case 4://modificar polarizado
+                                    System.out.println(" Seleccione si tiene polarizado: ");
+                                    System.out.println(" 1. Si");
+                                    System.out.println(" 2. No");
+                                    pol = leer.nextInt();
+                                    polarizado = "";
+                                    switch (pol) {
+                                        case 1:
+                                            polarizado = "Si";
+                                            break;
+
+                                        case 2:
+                                            polarizado = "No";
+                                            break;
+                                        default:
+                                            System.out.println(" Opcion Incorrecta");
+                                            System.out.println();
+                                    }
+                                    carritos.get(indice).setPolarizado(polarizado);
+
+                                    break;
+                                default:
+                                    System.out.println("Opcion incorrecta");
+                                    break;
+                            }
                             break;
+                        
                         default:
-                            throw new AssertionError();
+                            System.out.println("Opcion incorrecta");
+                            break;
                     }
 
                     break;
@@ -306,6 +450,7 @@ public class Tarea7JudaPonce_11841248 {
                 case 2:// administracion
                     System.out.println("1) Crear empleado");
                     System.out.println("2) Crear cliente");
+                    System.out.println("3) Modificar persona");
                     System.out.print("Ingrese la opcion que desea: ");
                     int per = leer.nextInt();
 
@@ -347,7 +492,10 @@ public class Tarea7JudaPonce_11841248 {
                             System.out.print("Ingrese el dinero que lleva consigo: ");
                             dinero = leer.nextInt();
 
-                            personal.add(new cliente(dinero, null, nombre, id, edad, altura, peso));
+                            personal.add(new cliente(dinero, listacarro, nombre, id, edad, altura, peso));
+                            break;
+                        case 3:
+                            
                             break;
                         default:
                             System.out.println("Opcion incorrecta");
@@ -417,6 +565,7 @@ public class Tarea7JudaPonce_11841248 {
                 case 4:
                     simular();
 
+                    System.out.println("");
                     System.out.println("Carros");
                     for (int i = 0; i < carritos.size(); i++) {
                         int n = i + 1;
@@ -451,11 +600,6 @@ public class Tarea7JudaPonce_11841248 {
         }
         for (int l = 0; l < con; l++) {
 
-            System.out.println("Carros");
-            for (int i = 0; i < carritos.size(); i++) {
-                int n = i + 1;
-                System.out.println(n + ") " + carritos.get(i));
-            }
 
             System.out.println("");
             int n;
@@ -466,25 +610,33 @@ public class Tarea7JudaPonce_11841248 {
                 }
             }
             System.out.print("Elija al cliente: ");
-            int clien = leer.nextInt();
-            clien--;
-
+            int eleccioncliente = leer.nextInt();
+            eleccioncliente--;
+            
+            System.out.println("");
             for (int i = 0; i < personal.size(); i++) {
                 if (personal.get(i) instanceof empleados) {
-                    if (personal.get(i).getClass() == null) {
-                        ((empleados) personal.get(i)).setCliente(((cliente) personal.get(clien)));
-                        System.out.println("El cliente " + personal.get(clien).getNombre() + " lo atenderá " + personal.get(i));
+                    if (((empleados)personal.get(i)).getCliente() == null) {
+                        ((empleados) personal.get(i)).setCliente(((cliente) personal.get(eleccioncliente)));
+                        System.out.println("El cliente " + personal.get(eleccioncliente).getNombre() + " lo atenderá " + personal.get(i).getNombre());
 
+                        System.out.println("");
                         System.out.println("Carros");
                         for (int r = 0; r < carritos.size(); r++) {
                             int o = r + 1;
-                            System.out.println(o + ") " + carritos.get(o));
+                            System.out.println(o + ") " + carritos.get(r));
                         }
                         
                         System.out.print("Elija el carro a comprar: ");
                         int carro = leer.nextInt();
                         carro--;
                         
+                        System.out.println(carritos.get(carro));
+                                                
+                        
+                        ((cliente)personal.get(eleccioncliente)).getCarros().add(carritos.get(carro));
+                        
+                        System.out.println("El cliente compró el carro "+carritos.get(carro));
                         
                     }
                 }
