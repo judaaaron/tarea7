@@ -191,7 +191,7 @@ public class Tarea7JudaPonce_11841248 {
                                             break;
 
                                         case 2:
-                                            polarizado = "No";
+                                            cab = "No";
                                             break;
                                         default:
                                             System.out.println(" Opcion Incorrecta");
@@ -528,6 +528,7 @@ public class Tarea7JudaPonce_11841248 {
                                 System.out.println(" opcion incorrecta");
                                 System.out.println();
                         }
+                        break;
 
                     }
                     System.out.print("Ingrese el nombre: ");
