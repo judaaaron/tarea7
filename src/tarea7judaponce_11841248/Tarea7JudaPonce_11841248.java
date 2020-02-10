@@ -295,14 +295,13 @@ public class Tarea7JudaPonce_11841248 {
 
                         case 2:// modificar carro
                             for (int i = 0; i < carritos.size(); i++) {
-                                int n=i+1;
-                                System.out.println(n+") "+carritos.get(i));
+                                int n = i + 1;
+                                System.out.println(n + ") " + carritos.get(i));
                             }
-                            
+
                             System.out.print("Ingrese el indice del carro que desea modificar: ");
-                            int indice = leer.nextInt();                            
-                            
-                            
+                            int indice = leer.nextInt();
+
                             System.out.println("1) Fecha");
                             System.out.println("2) Color");
                             System.out.println("3) Marca");
@@ -439,7 +438,7 @@ public class Tarea7JudaPonce_11841248 {
                                     break;
                             }
                             break;
-                        
+
                         default:
                             System.out.println("Opcion incorrecta");
                             break;
@@ -454,6 +453,83 @@ public class Tarea7JudaPonce_11841248 {
                     System.out.print("Ingrese la opcion que desea: ");
                     int per = leer.nextInt();
 
+                    if (per == 3) {
+                        System.out.println(" que desea modificar ");
+                        System.out.println(" 1. nombre");
+                        System.out.println(" 2. id");
+                        System.out.println(" 3. edad");
+                        System.out.println(" 4. altura");
+                        System.out.println(" 5. peso");
+                        int modificarAtributitos = leer.nextInt();
+                        String salidass = "";
+                        for (Object o : personal) {
+
+                            salidass += " [" + personal.indexOf(o) + "] " + o + "\n";
+
+                        }
+                        System.out.println(salidass);
+                        switch (modificarAtributitos) {
+                            case 1://nombre
+                                System.out.print(" Escoja la posicion: ");
+                                int posi = leer.nextInt();
+                                System.out.print(" Ingrese nombre: ");
+                                String newName = leer.next();
+                                personal.get(posi).setNombre(newName);
+                                System.out.println(" Nombre modificado con exito");
+                                System.out.println();
+
+                                break;
+
+                            case 2:// id
+                                System.out.print(" Escoja la posicion: ");
+                                posi = leer.nextInt();
+                                System.out.print(" Ingrese id: ");
+                                int newId = leer.nextInt();
+                                personal.get(posi).setId(newId);
+                                System.out.println(" Id modificado con exito");
+                                System.out.println();
+
+                                break;
+
+                            case 3://edad
+                                System.out.print(" Escoja la posicion: ");
+                                posi = leer.nextInt();
+                                System.out.print(" Ingrese edad: ");
+                                int newEdad = leer.nextInt();
+                                personal.get(posi).setEdad(newEdad);
+                                System.out.println(" edad modificado con exito");
+                                System.out.println();
+
+                                break;
+
+                            case 4://altura
+                                System.out.print(" Escoja la posicion: ");
+                                posi = leer.nextInt();
+                                System.out.print(" Ingrese altura: ");
+                                int newAltura = leer.nextInt();
+                                personal.get(posi).setAltura(newAltura);
+                                System.out.println(" altura modificado con exito");
+                                System.out.println();
+
+                                break;
+
+                            case 5:// peso
+                                System.out.print(" Escoja la posicion: ");
+                                posi = leer.nextInt();
+                                System.out.print(" Ingrese peso: ");
+                                int newPeso = leer.nextInt();
+                                personal.get(posi).setPeso(newPeso);
+                                System.out.println(" peso modificado con exito");
+                                System.out.println();
+
+                                break;
+
+                            default:
+                                System.out.println(" opcion incorrecta");
+                                System.out.println();
+                        }
+
+                    }
                     System.out.print("Ingrese el nombre: ");
                     nombre = leer.next();
 
@@ -494,8 +570,8 @@ public class Tarea7JudaPonce_11841248 {
 
                             personal.add(new cliente(dinero, listacarro, nombre, id, edad, altura, peso));
                             break;
-                        case 3:
-                            
+                        case 3:// modificar persona
+
                             break;
                         default:
                             System.out.println("Opcion incorrecta");
@@ -600,7 +676,6 @@ public class Tarea7JudaPonce_11841248 {
         }
         for (int l = 0; l < con; l++) {
 
-
             System.out.println("");
             int n;
             for (int i = 0; i < personal.size(); i++) {
@@ -612,11 +687,11 @@ public class Tarea7JudaPonce_11841248 {
             System.out.print("Elija al cliente: ");
             int eleccioncliente = leer.nextInt();
             eleccioncliente--;
-            
+
             System.out.println("");
             for (int i = 0; i < personal.size(); i++) {
                 if (personal.get(i) instanceof empleados) {
-                    if (((empleados)personal.get(i)).getCliente() == null) {
+                    if (((empleados) personal.get(i)).getCliente() == null) {
                         ((empleados) personal.get(i)).setCliente(((cliente) personal.get(eleccioncliente)));
                         System.out.println("El cliente " + personal.get(eleccioncliente).getNombre() + " lo atenderá " + personal.get(i).getNombre());
 
@@ -626,18 +701,17 @@ public class Tarea7JudaPonce_11841248 {
                             int o = r + 1;
                             System.out.println(o + ") " + carritos.get(r));
                         }
-                        
+
                         System.out.print("Elija el carro a comprar: ");
                         int carro = leer.nextInt();
                         carro--;
-                        
+
                         System.out.println(carritos.get(carro));
-                                                
-                        
-                        ((cliente)personal.get(eleccioncliente)).getCarros().add(carritos.get(carro));
-                        
-                        System.out.println("El cliente compró el carro "+carritos.get(carro));
-                        
+
+                        ((cliente) personal.get(eleccioncliente)).getCarros().add(carritos.get(carro));
+
+                        System.out.println("El cliente compró el carro " + carritos.get(carro));
+
                     }
                 }
             }
